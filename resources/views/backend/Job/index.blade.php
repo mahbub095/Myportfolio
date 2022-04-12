@@ -92,7 +92,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @if (count($data) > 0)
+
                         @foreach($jobs as $key => $job)
                             <tr class="intro-x">
                                 <td>
@@ -121,7 +121,7 @@
                                 </td>
                             </tr>
                         @endforeach
-                    @endif
+
                     </tbody>
                 </table>
             </div>

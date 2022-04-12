@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Resume;
 use Illuminate\Http\Request;
 use App\Models\Job;
+
 class JobController extends Controller
 {
     /**
@@ -14,10 +16,10 @@ class JobController extends Controller
      */
     public function index()
     {
-         $jobs=Job::all();
+        $jobs = Job::all();
 //         return view('backend.Job.index',compact('jobs'));
 //        return view('backend.Job.index',['jobs'=>$jobs]);
-        return view('backend.Job.index')->with('jobs',$jobs);
+        return view('backend.Job.index')->with('jobs', $jobs);
     }
 
     /**
@@ -33,17 +35,17 @@ class JobController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
 
-        $Jobs=new Job();
-        $Jobs->exptitle=$request->exptitle;
-        $Jobs->expmarketplace=$request->expmarketplace;
-        $Jobs->expdescription=$request->expdescription;
-        $Jobs->expsession=$request->expsession;
+        $Jobs = new Job();
+        $Jobs->exptitle = $request->exptitle;
+        $Jobs->expmarketplace = $request->expmarketplace;
+        $Jobs->expdescription = $request->expdescription;
+        $Jobs->expsession = $request->expsession;
         $Jobs->save();
         $notification = array(
             'message' => 'JObs Created',
@@ -55,7 +57,7 @@ class JobController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -66,33 +68,38 @@ class JobController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        $info = Job::find($id);
+        return view('backend.job.edit', compact('info'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-         $validatedData = $request->validate([
-            'name' => 'required|max:15',
-            'percent' => 'required',
+        $validatedData = $request->validate([
+            'exptitle' => 'required|max:15',
+            'expmarketplace' => 'required',
+            'expdescription' => 'required',
+            'expsession' => 'required',
         ]);
-        $Jobs= Job::find($id);
-        $Jobs->name=$request->name;
-        $Jobs->percent=$request->percent;
+        $Jobs = Job::find($id);
+        $Jobs->exptitle = $request->exptitle;
+        $Jobs->expmarketplace = $request->expmarketplace;
+        $Jobs->expdescription = $request->expdescription;
+        $Jobs->expsession = $request->expsession;
         $Jobs->save();
         $notification = array(
-            'message' => 'Job Updated',
+            'message' => 'Jobs Updated',
             'alert-type' => 'success'
         );
         return redirect()->back()->with($notification);
@@ -101,7 +108,7 @@ class JobController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
