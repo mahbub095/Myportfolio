@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Contact;
 use App\Mail\ContactMail;
@@ -11,30 +12,35 @@ use Illuminate\Support\Facades\Mail;
 class ContactController extends Controller
 {
 
-	public function __construct() 
-    {
-      $this->middleware('auth');
-    }
-
 
     public function store(Request $request)
     {
-    	$this->validate($request,[
-    	'name' => 'required',
-    	'email' => 'required',
-    	'subject' => 'required',
-    	'message' => 'required',
-	    ]);
+        $this->validate($request, [
+            'phone' => 'required',
+            'email' => 'required',
+            'address' => 'required',
 
-	    $contact = [
-	    	'name' => $request->name,
-	    	'email' => $request->email,
-	    	'subject' => $request->subject,
-	    	'message' => $request->message,
-	    ];
+        ]);
+        /*
+                $contact = [
+                    'phone' => $request->name,
+                    'email' => $request->email,
+                    'address' => $request->subject,
 
-	     Mail::to($request->email)->send(new ContactMail($contact));
+                ];*/
+        $contact = new Contact();
+        $contact->phone = $request->phone;
+        $contact->email = $request->email;
+        $contact->address = $request->address;
+        $contact->save();
+        $notification = array(
+            'message' => 'contact Created',
+            'alert-type' => 'success'
+        );
 
-	    return "Thanks for message me.";
+        return back()->with($notification);
+//	     Mail::to($request->email)->send(new ContactMail($contact));
+//
+//	    return "Thanks for message me.";
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTaglinesTable extends Migration
+class CreateSettingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,14 @@ class CreateTaglinesTable extends Migration
      */
     public function up()
     {
-        Schema::create('taglines', function (Blueprint $table) {
+        Schema::create('settings', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('tag_line');
-            $table->string('description');
+            $table->string('webtitle');
+            $table->string('facebook');
+            $table->string('twitter');
+            $table->string('youtube');
+            $table->string('instagram');
+            $table->string('cv');
             $table->string('image');
             $table->timestamps();
         });
@@ -29,6 +33,6 @@ class CreateTaglinesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('taglines');
+        Schema::dropIfExists('settings');
     }
 }

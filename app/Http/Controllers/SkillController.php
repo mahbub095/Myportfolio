@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Skill;
+use Facade\FlareClient\View;
+
 class SkillController extends Controller
 {
     /**
@@ -15,8 +17,17 @@ class SkillController extends Controller
      */
     public function index()
     {
-         $skills=Skill::latest()->get();
-         return view('backend.skill.index',compact('skills'));
+        // $skills = Skill::latest()->get();
+        //  return view('backend.skill.index',compact('skills'));
+
+
+        // get all the sharks
+        $skills = Skill::all();
+
+        // load the view and pass the sharks
+        return View('backend.skill.index', compact('skills'));
+        // ->with('sharks', $sharks);
+
     }
 
     /**
@@ -41,9 +52,9 @@ class SkillController extends Controller
             'name' => 'required|unique:skills|max:15',
             'percent' => 'required',
         ]);
-        $skill=new Skill;
-        $skill->name=$request->name;
-        $skill->percent=$request->percent;
+        $skill = new Skill;
+        $skill->name = $request->name;
+        $skill->percent = $request->percent;
         $skill->save();
         $notification = array(
             'message' => 'Skill Created',
@@ -84,13 +95,13 @@ class SkillController extends Controller
      */
     public function update(Request $request, $id)
     {
-         $validatedData = $request->validate([
+        $validatedData = $request->validate([
             'name' => 'required|max:15',
             'percent' => 'required',
         ]);
-        $skill= Skill::find($id);
-        $skill->name=$request->name;
-        $skill->percent=$request->percent;
+        $skill = Skill::find($id);
+        $skill->name = $request->name;
+        $skill->percent = $request->percent;
         $skill->save();
         $notification = array(
             'message' => 'Skill Updated',

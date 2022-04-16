@@ -1,10 +1,8 @@
 @extends('backend.partials.layouts')
 @section('content')
     <div class="content">
-        <!-- BEGIN: Top Bar -->
         <div class="top-bar -mx-4 px-4 md:mx-0 md:px-0">
             <div class="intro-x dropdown w-8 h-8">
-
                 <div class="dropdown-menu w-56">
                     <ul class="dropdown-content bg-primary text-white">
                         <li class="p-2">
@@ -42,7 +40,6 @@
                     </ul>
                 </div>
             </div>
-            <!-- END: Account Menu -->
         </div>
         <!-- END: Top Bar -->
 
@@ -79,7 +76,9 @@
                     </div>
                 </div>
             </div>
-            <!-- BEGIN: Data List -->
+            @if (Session::has('message'))
+                <div class="alert alert-info">{{ Session::get('message') }}</div>
+            @endif
             <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
                 <table class="table table-report -mt-2">
                     <thead>
@@ -118,7 +117,6 @@
 
             <!-- END: Pagination -->
         </div>
-        <!-- BEGIN: Delete Confirmation Modal -->
         <div id="delete-confirmation-modal" class="modal" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -143,8 +141,5 @@
                 </div>
             </div>
         </div>
-        <!-- END: Delete Confirmation Modal -->
     </div>
-
-    <!-- END: Content -->
 @endsection

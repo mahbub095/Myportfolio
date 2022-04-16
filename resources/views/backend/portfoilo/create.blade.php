@@ -14,15 +14,15 @@
             <div class="intro-y col-span-12 lg:col-span-6">
                 <!-- BEGIN: Form Layout -->
                 <form method="post" action="{{ route('portfolio.store') }}" enctype="multipart/form-data">
-					@csrf   
-                     <div class="intro-y box p-5">
-                     
+                    @csrf
+                    <div class="intro-y box p-5">
+
                         <div>
-                     
+
                             <div class="form-group">
                                 <div class="form-group">
                                     <label for="icon">{{ __('Image 350x342px') }}</label>
-                                    <input type="file" name="file" id="icon"  class="form-control" required="">
+                                    <input type="file" name="file" id="icon" class="form-control" required="">
                                 </div>
                                 <div class="form-group">
                                     <label for="title">{{ __('Title')}}</label>
@@ -39,23 +39,22 @@
                                         <option value="_blank">_blank</option>
                                     </select>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="cat_id">{{ __('Category')}}</label>
                                     <select class="form-control" name="cat_id">
                                         @foreach(App\Category::latest()->get() as $categroy)
-                                        <option value="{{ $categroy->id }}">{{ $categroy->name }}</option>
+                                            <option value="{{ $categroy->id }}">{{ $categroy->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
-                            </div>
-                       
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
 
-                    </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Save</button>
+
+                        </div>
                 </form>
                 <!-- END: Form Layout -->
             </div>

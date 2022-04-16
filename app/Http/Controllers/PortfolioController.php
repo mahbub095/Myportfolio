@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
 use App\Portfolio;
- 
+
 class PortfolioController extends Controller
 {
     /**
@@ -16,8 +16,8 @@ class PortfolioController extends Controller
      */
     public function index()
     {
-        $info=Portfolio::latest()->get();
-        return view('backend.portfoilo.index',compact('info'));
+//        $info=Portfolio::latest()->get();
+//        return view('backend.portfoilo.index',compact('info'));
     }
 
     /**
@@ -27,7 +27,7 @@ class PortfolioController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.portfoilo.create');
     }
 
     /**
@@ -49,7 +49,7 @@ class PortfolioController extends Controller
             request()->file->move('uploads/',$imageName);
             $file='uploads/'.$imageName;
 
-         
+
         }
         if ($request->url) {
            $url=$request->url;
@@ -63,7 +63,7 @@ class PortfolioController extends Controller
          $Portfolio->title=$link;
          $Portfolio->cat_id=$request->cat_id;
          $Portfolio->image=$file;
-         
+
          $Portfolio->save();
           $notification = array(
             'message' => 'Portoflio Created',
@@ -94,7 +94,7 @@ class PortfolioController extends Controller
     {
         $info=Portfolio::find($id);
         // return view('admin.portfolioedit',compact('info'));
-       
+
     }
 
     /**
@@ -120,7 +120,7 @@ class PortfolioController extends Controller
                 unlink($portfolio->image);
             }
              $portfolio->image=$file;
-         
+
         }
 
         if ($request->url) {
@@ -130,11 +130,11 @@ class PortfolioController extends Controller
             $url="#";
         }
         $link="<a href='".$url."'  target='".$request->target."' id='link'>".$request->title."</a>";
-        
+
          $portfolio->title=$link;
          $portfolio->cat_id=$request->cat_id;
-        
-         
+
+
          $portfolio->save();
           $notification = array(
             'message' => 'Portoflio Updated',

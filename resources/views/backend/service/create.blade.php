@@ -1,9 +1,5 @@
 @extends('backend.partials.layouts')
 @section('content')
-
-
-
-
     <div class="content">
         <div class="intro-y flex items-center mt-8">
             <h2 class="text-lg font-medium mr-auto">
@@ -25,9 +21,7 @@
                 <form method="post" action="{{ route('service.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="intro-y box p-5">
-
                         <div>
-                             
                             <div class="form-group">
                                 <label for="title">{{ __('Name')}}</label>
                                 <input type="text" name="title" id="title" class="form-control">
@@ -41,8 +35,6 @@
                                 <input type="file" name="file" id="icon"  class="form-control" required="">
                             </div>
                         </div>
-
-                 
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

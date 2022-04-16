@@ -14,10 +14,7 @@ class TaglineController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+
 
     public function index()
     {
@@ -48,19 +45,32 @@ class TaglineController extends Controller
         $validatedData = $request->validate([
             'tag_line' => 'required',
             'description' => 'required',
-            'links' => 'required',
+
         ]);
         $Tagline = Tagline::first();
-        $Tagline->tag_line = $request->tag_line;
 
+        if ($request->hasFile('image')) {
+
+            $cvname = time() . '.' . request()->image->getClientOriginalExtension();
+            request()->image->move('uploads/', $cvname);
+            $cv = 'uploads/' . $cvname;
+
+            if (file_exists($Tagline->image)) {
+                unlink($Tagline->image);
+            }
+        } else {
+            $cv = $Tagline->image;
+        }
+
+
+        $Tagline->tag_line = $request->tag_line;
         $Tagline->description = $request->description;
-        $Tagline->links = $request->links;
+
 
         DB::table('taglines')->update([
             'tag_line' => $request->tag_line,
             'description' => $request->description,
-            'links' => $request->links,
-
+            'image' => $cv,
         ]);
 
         $notification = array(

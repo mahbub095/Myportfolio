@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
 use App\Models\About;
+
 class AboutController extends Controller
 {
     /**
@@ -15,15 +16,15 @@ class AboutController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function __construct() 
+    public function __construct()
     {
-      $this->middleware('auth');
+        $this->middleware('auth');
     }
 
     public function index()
     {
-        $info=About::first();
-        return view('backend.about',compact('info'));
+        $info = About::first();
+        return view('backend.about', compact('info'));
     }
 
     /**
@@ -39,7 +40,7 @@ class AboutController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -47,57 +48,50 @@ class AboutController extends Controller
         $validatedData = $request->validate([
             'description' => 'required',
             'cv' => 'mimes:doc,docx,pdf',
-            'file'=> 'image'
-         ]);
-       
-         $info=About::first();
+            'file' => 'image'
+        ]);
+
+        $info = About::first();
         if ($request->hasFile('cv')) {
+            $cvname = time() . '.' . request()->cv->getClientOriginalExtension();
+            request()->cv->move('uploads/', $cvname);
+            $cv = 'uploads/' . $cvname;
 
-            $cvname = time().'.'.request()->cv->getClientOriginalExtension();
-            request()->cv->move('uploads/',$cvname);
-            $cv='uploads/'.$cvname;
+            if (file_exists($info->cv)) {
+                unlink($info->cv);
+            }
+        } else {
+            $cv = $info->cv;
+        }
 
-          if (file_exists($info->cv)) {
-             unlink($info->cv);
-         }
-        }
-        else{
-            $cv=$info->cv;
-        }
- 
         if ($request->hasFile('file')) {
-           
-            $imageName = time().'.'.request()->file->getClientOriginalExtension();
-            request()->file->move('uploads/',$imageName);
-            $avatar='uploads/'.$imageName;
 
-          if (file_exists($info->image)) {
-             unlink($info->image);
-         }
-        }
-        else{
-            $avatar=$info->image;
+            $imageName = time() . '.' . request()->file->getClientOriginalExtension();
+            request()->file->move('uploads/', $imageName);
+            $avatar = 'uploads/' . $imageName;
+
+            if (file_exists($info->image)) {
+                unlink($info->image);
+            }
+        } else {
+            $avatar = $info->image;
         }
 
         DB::table('about')->update([
-            
-            'name'=>$request->name,
-            'dob'=>$request->dob,
-            'mail'=>$request->mail,
-            'phone'=>$request->phone,
-            'address'=>$request->address,
-            'nationality'=>$request->nationality,
-            
-            
-            'title'=>$request->title,
-            'subtitle'=>$request->subtitle,
-            'description'=>$request->description,
-            'cv'=>$cv,
-            'image'=>$avatar,
+
+            'name' => $request->name,
+            'dob' => $request->dob,
+            'mail' => $request->mail,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'nationality' => $request->nationality,
+            'title' => $request->title,
+            'subtitle' => $request->subtitle,
+            'description' => $request->description,
+            'cv' => $cv,
+            'image' => $avatar,
         ]);
-        
-        
-          $notification = array(
+        $notification = array(
             'message' => 'About Updated',
             'alert-type' => 'success'
         );
@@ -108,7 +102,7 @@ class AboutController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -119,7 +113,7 @@ class AboutController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -130,8 +124,8 @@ class AboutController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -142,7 +136,7 @@ class AboutController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

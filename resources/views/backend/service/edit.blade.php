@@ -21,7 +21,7 @@
                                            placeholder="Input text" required value="{{ $info->title }}">
                                 </div>
                                 <div>
-                                    <label for="crud-form-1" class="form-label"> Name</label>
+                                    <label for="crud-form-1" class="form-label"> Description</label>
                                     <input id="description" name="description" type="text" class="form-control w-full"
                                            placeholder="Input text" required value="{{ $info->description }}">
                                 </div>

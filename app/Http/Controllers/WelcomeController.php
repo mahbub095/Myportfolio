@@ -12,7 +12,7 @@ use App\Models\Service;
 use App\Models\Softskill;
 use App\Models\Job;
 use App\Models\Resume;
-use App\Setting;
+use App\Models\Setting;
 use App\Skill;
 use App\Social;
 use App\Subscriber;
@@ -25,14 +25,12 @@ use  Artesaos\SEOTools\Facades\SEOTools;
 
 class WelcomeController extends Controller
 {
-
-
     public function home()
     {
         // $bg_img = Setting::select('home_img')->first();
-        $tagline = Tagline::select('tag_line', 'id')->get();
+        $tagline = Tagline::select('tag_line', 'id', 'image')->get();
         // $socials = Social::select('icon', 'link')->latest()->get();
-        return response()->json([ 'tagline' => $tagline]);
+        return response()->json(['tagline' => $tagline]);
     }
 
     public function about()
@@ -55,13 +53,21 @@ class WelcomeController extends Controller
     {
         //  $settings=Setting::select('contact_description')->first();
         $contacts = Contact::select('phone', 'email', 'address')->first();
-        //  return response()->json(['settings'=>$settings,'contacts'=>$contacts]);
+        return response()->json(['contacts' => $contacts]);
 
     }
-    public function resume(){
-         $Resume = Resume::select('edutitle', 'univerisity', 'description','sessions')->first();
-         $skill = Skill::select('name', 'percent')->get();
-         $softskill=Softskill::select('softskillname','softskillrating')->get();
-         $Jobs=Job::select('exptitle','expmarketplace','expdescription','expsession')->get();
+
+    public function resume()
+    {
+        $Resume = Resume::select('edutitle', 'univerisity', 'description', 'sessions')->first();
+        $skill = Skill::select('name', 'percent')->get();
+        $softskill = Softskill::select('softskillname', 'softskillrating')->get();
+        $Jobs = Job::select('exptitle', 'expmarketplace', 'expdescription', 'expsession')->get();
+    }
+
+    public function settings()
+    {
+        $settings = Setting::select('webtitle', 'facebook', 'twitter', 'youtube', 'instagram', 'cv')->first();
+        return response()->json(['settings' => $settings]);
     }
 }

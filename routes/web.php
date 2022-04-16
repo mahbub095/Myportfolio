@@ -16,8 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
 //homepage contact route
-Route::post('contact', 'ContactController@store')->name('contact.store');
+Route::post('contact', 'ContactController@store')->name('contact.store');;
 
 Auth::routes();
 
@@ -65,7 +66,11 @@ Route::resource('softskill', 'SoftskillController');
 Route::get('softskills/destroy/{id}', 'SoftskillController@destroy')->name('softskills.delete');
 
 
-
 //skill resource route
 Route::resource('jobs', 'JobController');
 Route::get('jobs/destroy/{id}', 'JobController@destroy')->name('jobs.delete');
+
+
+//skill resource route
+Route::resource('settings', 'SettingController');
+Route::get('settings/destroy/{id}', 'SettingController@destroy')->name('settings.delete');

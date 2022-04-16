@@ -3,27 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
-use Illuminate\Http\Request;
-use DB;
-use App\Models\Resume;
 
-class ResumeController extends Controller
+use App\Models\Setting;
+use Illuminate\Http\Request;
+
+use DB;
+
+class SettingController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+
 
     public function index()
     {
-        $resumes = Resume::latest()->get();
-        return view('backend.resume.index', compact('resumes'));
+        $settings = Setting::first();
+
+        return view('backend.settings', compact('settings'));
     }
 
     /**
@@ -32,8 +31,9 @@ class ResumeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
+
     {
-        return view('backend.resume.create');
+
     }
 
     /**
@@ -45,31 +45,54 @@ class ResumeController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'edutitle' => 'required|max:50',
-            'univerisity' => 'required|max:100',
+            'webtitle' => 'required',
+            'facebook' => 'required',
+            'twitter' => 'required',
+            'instagram' => 'required',
 
         ]);
+        $settings = Setting::first();
+        if ($request->hasFile('cv')) {
 
+            $cvname = time() . '.' . request()->cv->getClientOriginalExtension();
+            request()->cv->move('uploads/', $cvname);
+            $cv = 'uploads/' . $cvname;
+
+            if (file_exists($settings->cv)) {
+                unlink($settings->cv);
+            }
+        } else {
+            $cv = $settings->cv;
+        }
+        //image upload
         if ($request->file) {
 
             $imageName = time() . '.' . request()->file->getClientOriginalExtension();
             request()->file->move('uploads/', $imageName);
             $file = 'uploads/' . $imageName;
         }
-        $Resume = new Resume;
-        $Resume->edutitle = $request->edutitle;
-        $Resume->univerisity = $request->univerisity;
-        $Resume->description = $request->description;
-//        $Resume->image=$file;
-        $Resume->sessions = $request->sessions;
 
+        $settings->webtitle = $request->webtitle;
+        $settings->facebook = $request->facebook;
+        $settings->twitter = $request->twitter;
+        $settings->youtube = $request->youtube;
+        $settings->instagram = $request->instagram;
+        $settings->image = $file;
+        DB::table('settings')->update([
+            'webtitle' => $request->webtitle,
+            'facebook' => $request->facebook,
+            'twitter' => $request->twitter,
+            'youtube' => $request->youtube,
+            'instagram' => $request->instagram,
+            'cv' => $cv,
+            'image' => $file,
 
-        $Resume->save();
+        ]);
+
         $notification = array(
-            'message' => 'Service Created',
+            'message' => 'Setting Update',
             'alert-type' => 'success'
         );
-
         return back()->with($notification);
     }
 
@@ -92,8 +115,7 @@ class ResumeController extends Controller
      */
     public function edit($id)
     {
-        $info = Resume::find($id);
-        return view('backend.resume.edit', compact('info'));
+        //
     }
 
     /**
@@ -105,30 +127,7 @@ class ResumeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validatedData = $request->validate([
-            'edutitle' => 'required|max:20',
-            'univerisity' => 'required|max:100',
-            'description' => 'required|max:100',
-            'sessions' => 'required|max:100',
 
-        ]);
-
-        $Resume = Resume::find($id);
-
-
-        $Resume->edutitle = $request->edutitle;
-        $Resume->univerisity = $request->univerisity;
-        $Resume->description = $request->description;
-        $Resume->sessions = $request->sessions;
-
-
-        $Resume->save();
-        $notification = array(
-            'message' => 'Resumes Updated',
-            'alert-type' => 'success'
-        );
-
-        return back()->with($notification);
     }
 
     /**
@@ -139,16 +138,11 @@ class ResumeController extends Controller
      */
     public function destroy($id)
     {
-        $info = Resume::find($id);
-        if (file_exists($info->icon)) {
-            unlink($info->icon);
-        }
-        Resume::destroy($id);
+        Setting::destroy($id);
         $notification = array(
-            'message' => 'Service Destroyed',
+            'message' => 'settings Destroy',
             'alert-type' => 'success'
         );
-
-        return back()->with($notification);
+        return redirect()->back()->with($notification);
     }
 }
