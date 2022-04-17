@@ -1,6 +1,11 @@
 @extends('backend.partials.layouts')
 @section('content')
     <div class="content">
+        <div class="intro-y flex items-center mt-8">
+            <h2 class="text-lg font-medium mr-auto">
+                Form Layout
+            </h2>
+        </div>
         <!-- BEGIN: Top Bar -->
         <div class="top-bar -mx-4 px-4 md:mx-0 md:px-0">
             <div class="intro-x dropdown w-8 h-8">
@@ -47,37 +52,8 @@
         <!-- END: Top Bar -->
 
         <div class="grid grid-cols-12 gap-6 mt-5">
-            <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
-                <button class="btn btn-primary shadow-md mr-2">Add New Product</button>
-                <div class="dropdown">
-                    <button class="dropdown-toggle btn px-2 box" aria-expanded="false" data-tw-toggle="dropdown">
-                        <span class="w-5 h-5 flex items-center justify-center"> <i class="w-4 h-4"
-                                                                                   data-feather="plus"></i> </span>
-                    </button>
-                    <div class="dropdown-menu w-40">
-                        <ul class="dropdown-content">
-                            <li>
-                                <a href="" class="dropdown-item"> <i data-feather="printer" class="w-4 h-4 mr-2"></i>
-                                    Print </a>
-                            </li>
-                            <li>
-                                <a href="" class="dropdown-item"> <i data-feather="file-text" class="w-4 h-4 mr-2"></i>
-                                    Export to Excel </a>
-                            </li>
-                            <li>
-                                <a href="" class="dropdown-item"> <i data-feather="file-text" class="w-4 h-4 mr-2"></i>
-                                    Export to PDF </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="hidden md:block mx-auto text-slate-500">Showing 1 to 10 of 150 entries</div>
-                <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
-                    <div class="w-56 relative text-slate-500">
-                        <input type="text" class="form-control w-56 box pr-10" placeholder="Search...">
-                        <i class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0" data-feather="search"></i>
-                    </div>
-                </div>
+          
+           
             </div>
             <!-- BEGIN: Data List -->
             <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
@@ -110,7 +86,7 @@
                                 </div>
                             </td>
                         </tr>
-                    @endforeach
+               
                     </tbody>
                 </table>
             </div>
@@ -137,8 +113,11 @@
                             <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-24 mr-1">
                                 Cancel
                             </button>
+                            <td>
                             <a href="{{ route('services.delete',$service->id) }}"
                                class="btn btn-danger w-24">Delete</a>
+                            </td>
+                               @endforeach
                         </div>
                     </div>
                 </div>

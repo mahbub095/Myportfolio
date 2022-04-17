@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Intro;
 use App\Repositories\IntroRepository;
 use Illuminate\Http\Request;
 
@@ -27,6 +28,8 @@ class IntroController extends Controller
 
     public function index()
     {
+        $intros = Intro::latest()->get();
+        return view('backend.intro.index', compact('intros'));
 
     }
 

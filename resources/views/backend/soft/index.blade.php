@@ -109,7 +109,7 @@
                                 </div>
                             </td>
                         </tr>
-                    @endforeach
+                
                     </tbody>
                 </table>
             </div>
@@ -138,6 +138,7 @@
                             </button>
                             <a href="{{ route('softskills.delete',$soft->id) }}"
                                class="btn btn-danger w-24">Delete</a>
+                               @endforeach
                         </div>
                     </div>
                 </div>

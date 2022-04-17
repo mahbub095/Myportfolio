@@ -120,7 +120,7 @@
                                     </div>
                                 </td>
                             </tr>
-                        @endforeach
+                      
 
                     </tbody>
                 </table>
@@ -150,6 +150,7 @@
                             </button>
                             <a href="{{ route('jobs.delete',$job->id) }}"
                                class="btn btn-danger w-24">Delete</a>
+                               @endforeach
                         </div>
                     </div>
                 </div>

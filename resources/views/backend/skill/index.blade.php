@@ -108,7 +108,7 @@
                                 </div>
                             </td>
                         </tr>
-                    @endforeach
+                    
                     </tbody>
                 </table>
             </div>
@@ -136,6 +136,7 @@
                             </button>
                             <a href="{{ route('skills.delete',$skill->id) }}"
                                class="btn btn-danger w-24">Delete</a>
+                               @endforeach
                         </div>
                     </div>
                 </div>
