@@ -20,9 +20,21 @@ class SettingController extends Controller
 
     public function index()
     {
-        $settings = Setting::first();
 
-        return view('backend.settings', compact('settings'));
+        try {
+            DB::connection()->getPdo();
+            if (DB::connection()->getDatabaseName()) {
+//                $settings = Setting::first();
+
+                return view('backend.settings', compact('settings'));
+
+            } else {
+                return redirect()->route('install');
+            }
+        } catch (\Exception $e) {
+            return redirect()->route('install');
+        }
+
     }
 
     /**

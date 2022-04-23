@@ -25,6 +25,30 @@ use  Artesaos\SEOTools\Facades\SEOTools;
 
 class WelcomeController extends Controller
 {
+
+    public function welcome()
+	{
+
+      
+      try {
+          DB::connection()->getPdo();
+        if(DB::connection()->getDatabaseName()){
+     
+        $settings=Setting::first();
+     
+
+        return view('welcome',compact('settings'));
+        }else{
+            return redirect()->route('install');
+        }
+        } catch (\Exception $e) {
+            return redirect()->route('install');
+        } 
+
+    }
+
+
+
     public function home()
     {
         // $bg_img = Setting::select('home_img')->first();

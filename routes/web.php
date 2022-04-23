@@ -12,10 +12,25 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-//Frontend
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/install/check/{param}','InstallerController@check')->name('install.check');
+
+Route::get('404',function(){
+	return abort(404);
+})->name('404');
+//HomePage route
+Route::get('/', 'WelcomeController@welcome')->name('welcome');
+//Laravel default auth route
+Auth::routes();
+//homepage contact route
+Route::post('contact','ContactController@store')->name('contact.store');
+
+// Route::get('pre/install',' InstallerController@preinstall')->name('preinstall');
+Route::get('/install','InstallerController@install')->name('install');
+Route::get('/install/info','InstallerController@info')->name('install.info');
+Route::post('/install/store','InstallerController@send');
+
+
 
 //homepage contact route
 Route::post('contact', 'ContactController@store')->name('contact.store');;
@@ -74,3 +89,13 @@ Route::get('jobs/destroy/{id}', 'JobController@destroy')->name('jobs.delete');
 //skill resource route
 Route::resource('settings', 'SettingController');
 Route::get('settings/destroy/{id}', 'SettingController@destroy')->name('settings.delete');
+
+
+//uttilites
+Route::get('clear_cache', function () {
+
+    \Artisan::call('cache:clear');
+
+    dd("Cache is cleared");
+
+});
