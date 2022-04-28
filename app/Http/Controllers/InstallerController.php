@@ -1,21 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Lpress\Verify\Everify;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Artisan;
 use DB;
+use Illuminate\Support\Str;
+use File;
 
 class InstallerController extends Controller
 {
-
-    // public function preinstall()
-    // {
-
-
-    // }
-
 
     public function install()
     {
@@ -72,64 +67,136 @@ class InstallerController extends Controller
             ];
             return view('installer.requirments',compact('info'));
         }
-
-
+  
+        
     }
 
     public function info()
     {
-    	try {
-            DB::connection()->getPdo();
-            if(DB::connection()->getDatabaseName()){
-            return redirect()->route(404);
-          }else{
-            return view('installer.info');
-          }
-        } catch (\Exception $e) {
-            return view('installer.info');
-        }
-
+        return view('installer.info');    
     }
 
     public function send(Request $request)
     {
 
-     	$myfiles = __DIR__;
-     	$main = substr($myfiles,0,-30).'.env';
-     	$myfile = fopen($main, "w") or die("Unable to open file!");
-		$txt = "APP_NAME=".$request->app_name."\n";
-		fwrite($myfile, $txt);
-		$txt = "APP_ENV=local\nAPP_KEY=base64:Oi572DPX0FLExElNRpb9e0/8AIk4WJ1bt3zcsMiXyDI=\nAPP_DEBUG=false\nAPP_URL=".$request->app_url."\n\nLOG_CHANNEL=stack\n\nDB_CONNECTION=mysql\nDB_HOST=".$request->db_host."\nDB_PORT=3306\nDB_DATABASE=".$request->db_name."\nDB_USERNAME=".$request->db_user."\nDB_PASSWORD=".$request->db_pass."\n\nBROADCAST_DRIVER=log\nCACHE_DRIVER=file\nQUEUE_CONNECTION=sync\nSESSION_DRIVER=file\nSESSION_LIFETIME=120\n\nREDIS_HOST=127.0.0.1\nREDIS_PASSWORD=null\nREDIS_PORT=6379\n\nMAIL_DRIVER=".$request->mail_driver."\nMAIL_HOST=".$request->mail_host."\nMAIL_PORT=".$request->mail_port."\nMAIL_USERNAME=".$request->mail_user."\nMAIL_PASSWORD=".$request->mail_pass."\nMAIL_ENCRYPTION=".$request->mail_enc."\nMAIL_FROM_ADDRESS=".$request->mail_address."\nMAIL_FROM_NAME=".$request->mail_form."\n\nAWS_ACCESS_KEY_ID=\nAWS_SECRET_ACCESS_KEY=\nAWS_DEFAULT_REGION=us-east-1\nAWS_BUCKET=\n\nPUSHER_APP_ID=\nPUSHER_APP_KEY=\nPUSHER_APP_SECRET=\nPUSHER_APP_CLUSTER=mt1\n\nMIX_PUSHER_APP_KEY=\nMIX_PUSHER_APP_CLUSTER=\n\n MAILCHIMP_APIKEY=\n MAILCHIMP_LIST_ID=\n";
-		fwrite($myfile, $txt);
-		fclose($myfile);
-
-		return redirect()->route('install.check',$request->method);
+        $APP_NAME = Str::slug($request->app_name);
+        $PUSHER_APP_KEY = $request->PUSHER_APP_KEY;
+        $PUSHER_APP_CLUSTER = $request->PUSHER_APP_CLUSTER;
+        $txt ="APP_NAME=".$APP_NAME."
+APP_ENV=local
+APP_KEY=base64:kZN2g9Tg6+mi1YNc+sSiZAO2ljlQBfLC3ByJLhLAUVc=
+APP_DEBUG=true
+APP_URL=".$request->app_url."
+LOG_CHANNEL=stack\n
+DB_CONNECTION=mysql
+DB_HOST=".$request->db_host."
+DB_PORT=3306
+DB_DATABASE=".$request->db_name."
+DB_USERNAME=".$request->db_user."
+DB_PASSWORD=".$request->db_pass."\n
+BROADCAST_DRIVER=log
+CACHE_DRIVER=file
+QUEUE_CONNECTION=sync
+SESSION_DRIVER=file
+SESSION_LIFETIME=120\n
+REDIS_HOST=127.0.0.1
+REDIS_PASSWORD=null
+REDIS_PORT=6379\n
+MAIL_DRIVER=smtp
+MAIL_HOST=smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=
+MAIL_PASSWORD=
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS=
+MAIL_FROM_NAME=\n
+DO_SPACES_KEY=
+DO_SPACES_SECRET=
+DO_SPACES_ENDPOINT=
+DO_SPACES_REGION=
+DO_SPACES_BUCKET=
+PUSHER_APP_ID=
+PUSHER_APP_KEY=
+PUSHER_APP_SECRET=
+PUSHER_APP_CLUSTER=mt1\n
+MIX_PUSHER_APP_KEY=
+MIX_PUSHER_APP_CLUSTER=\n
+TIMEZONE=UTC
+DEFAULT_LANG=en\n
+STRIPE_KEY=''
+STRIPE_SECRET=''\n
+ZOOM_API_KEY=
+ZOOM_API_SECRET=
+ZOOM_USER_EMAIL= 
+PAYPAL_CLIENT_ID= 
+      
+       ";
+       File::put(base_path('.env'),$txt);
+      //  return "Sending Credentials";
+      
+		return redirect()->route('install.migrate',$request->method);
     }
+    
 
-
-    public function check($param)
+    public function check()
     {
-
         try {
           DB::connection()->getPdo();
             if(DB::connection()->getDatabaseName()){
-                if ($param=='install') {
-                   Artisan::call('migrate:fresh');
-
-                   Artisan::call('db:seed');
-                   return redirect()->route('welcome');
-                }
-
-                 else{
-                    return redirect()->route('welcome');
-                 }
-
+                return "Database Installing";
             }else{
-                die("Could not find the database. Please check your configuration.");
+                return false;
             }
         } catch (\Exception $e) {
-            return redirect()->route('install.info')->with('status','Could not find the database. Please check your configuration.');
+            return false;
         }
-
+        
     }
+
+    public function migrate()
+    {
+        ini_set('max_execution_time', '0');
+        \Artisan::call('migrate:fresh');
+        return "Demo Importing";
+    }
+
+    public function seed()
+    {
+        ini_set('max_execution_time', '0');
+        \Artisan::call('db:seed');
+        return "Congratulations! Your site is ready";
+    }
+
+
+   /*  public function verify($key)
+    {
+        $check= Everify::Check($key);
+        if ($check==true) {
+            echo "success";
+         }
+        else{
+            echo  Everify::$massage;
+         }
+    }
+
+    public function purchase()
+    {
+        return view('installer.purchase');
+    }
+
+    public function purchase_check(Request $request)
+    {
+        $this->validate($request,[
+            'purchase_code' => 'required'
+        ]);
+
+        $check= Everify::Check($request->purchase_code);
+        if ($check==true) {
+            return redirect()->route('install.info');
+        }
+        else{
+            return back()->with('alert-success',Everify::$massage);
+         }
+
+    } */
 }

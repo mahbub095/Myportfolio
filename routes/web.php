@@ -12,26 +12,26 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/install/check/{param}','InstallerController@check')->name('install.check');
-
+ 
 Route::get('404',function(){
 	return abort(404);
 })->name('404');
 //HomePage route
 Route::get('/', 'WelcomeController@welcome')->name('welcome');
 //Laravel default auth route
-Auth::routes();
+
 //homepage contact route
 Route::post('contact','ContactController@store')->name('contact.store');
 
-// Route::get('pre/install',' InstallerController@preinstall')->name('preinstall');
-Route::get('/install','InstallerController@install')->name('install');
-Route::get('/install/info','InstallerController@info')->name('install.info');
-Route::post('/install/store','InstallerController@send');
-
-
-
+// All installer route are here
+Route::get('install','InstallerController@install')->name('install');
+// Route::get('install/purchase','InstallerController@purchase')->name('purchase');
+// Route::post('install/purchase_check','InstallerController@purchase_check')->name('purchase_check');
+// Route::get('install/check','InstallerController@check')->name('install.check');
+Route::get('install/info','InstallerController@info')->name('install.info');
+Route::get('install/migrate','InstallerController@migrate')->name('install.migrate');
+Route::get('install/seed','InstallerController@seed')->name('install.seed');
+Route::post('install/store','InstallerController@send');
 //homepage contact route
 Route::post('contact', 'ContactController@store')->name('contact.store');;
 
@@ -94,8 +94,5 @@ Route::get('settings/destroy/{id}', 'SettingController@destroy')->name('settings
 //uttilites
 Route::get('clear_cache', function () {
 
-    \Artisan::call('cache:clear');
-
-    dd("Cache is cleared");
-
+    
 });
