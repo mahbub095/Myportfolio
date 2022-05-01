@@ -1,5 +1,13 @@
 <!DOCTYPE html>
-
+<!--
+Template Name: Rubick - HTML Admin Dashboard Template
+Author: Left4code
+Website: http://www.left4code.com/
+Contact: muhammadrizki@left4code.com
+Purchase: https://themeforest.net/user/left4code/portfolio
+Renew Support: https://themeforest.net/user/left4code/portfolio
+License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
+-->
 <html lang="en" class="dark">
 <!-- BEGIN: Head -->
 <head>
@@ -63,9 +71,7 @@
                                     </span>
                         @enderror
 
-                        <input type="password"
-                               class="intro-x login__input form-control @error('password') is-invalid @enderror  py-3 px-4 block mt-4 "
-                               name="password" required autocomplete="current-password"
+                        <input type="password" class="intro-x login__input form-control @error('password') is-invalid @enderror  py-3 px-4 block mt-4 "name="password" required autocomplete="current-password"
                                placeholder="Password">
 
                         @error('password')
@@ -78,17 +84,15 @@
 
 
                         <div class="flex items-center mr-auto">
-                            <input id="remember-me" type="checkbox" class="form-check-input border mr-2"
-                                   name="remember" {{ old('remember') ? 'checked' : '' }}>
-                            <label class="cursor-pointer select-none" for="remember">Remember me</label>
+                            <input id="remember-me" type="checkbox" class="form-check-input border mr-2">
+                            <label class="cursor-pointer select-none" for="remember-me">Remember me</label>
                         </div>
 
                         <a href="">Forgot Password?</a>
 
                     </div>
                     <div class="intro-x mt-5 xl:mt-8 text-center xl:text-left">
-                        <button type="submit" class="btn btn-primary py-3 px-4 w-full xl:w-32 xl:mr-3 align-top">Login
-                        </button>
+                        <button class="btn btn-primary py-3 px-4 w-full xl:w-32 xl:mr-3 align-top">Login</button>
                         <button class="btn btn-outline-secondary py-3 px-4 w-full xl:w-32 mt-3 xl:mt-0 align-top">
                             Register
                         </button>

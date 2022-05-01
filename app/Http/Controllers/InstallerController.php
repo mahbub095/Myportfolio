@@ -157,7 +157,7 @@ PAYPAL_CLIENT_ID=
     {
         ini_set('max_execution_time', '0');
         \Artisan::call('migrate:fresh');
-        return "Demo Importing";
+        return "Your database create Sucessfully";
     }
 
     public function seed()
@@ -168,35 +168,5 @@ PAYPAL_CLIENT_ID=
     }
 
 
-   /*  public function verify($key)
-    {
-        $check= Everify::Check($key);
-        if ($check==true) {
-            echo "success";
-         }
-        else{
-            echo  Everify::$massage;
-         }
-    }
-
-    public function purchase()
-    {
-        return view('installer.purchase');
-    }
-
-    public function purchase_check(Request $request)
-    {
-        $this->validate($request,[
-            'purchase_code' => 'required'
-        ]);
-
-        $check= Everify::Check($request->purchase_code);
-        if ($check==true) {
-            return redirect()->route('install.info');
-        }
-        else{
-            return back()->with('alert-success',Everify::$massage);
-         }
-
-    } */
+    
 }

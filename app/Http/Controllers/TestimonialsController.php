@@ -21,8 +21,8 @@ class TestimonialsController extends Controller
 
     public function index()
     {
-        // $services=Service::latest()->get();
-        // return view('backend.services',compact('services'));
+        $testimonials = Testimonials::latest()->get();
+        return view('backend.testimonials.index', compact('testimonials'));
     }
 
     /**
@@ -44,7 +44,6 @@ class TestimonialsController extends Controller
     public function store(Request $request)
     {
 
-   
 
         $validatedData = $request->validate([
             'name' => 'required|max:50',
@@ -107,8 +106,8 @@ class TestimonialsController extends Controller
      */
     public function update(Request $request, $id)
     {
-       
-    
+
+
         $validatedData = $request->validate([
             'title' => 'required|max:20',
             'description' => 'required|max:100',

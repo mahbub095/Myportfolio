@@ -60,10 +60,52 @@
             </ul>
         </li>
         <li>
-            <a href="{{route('testimonials.create')}}" class="side-menu">
-                <div class="side-menu__icon"><i data-feather="inbox"></i></div>
-                <div class="side-menu__title"> Testimonials</div>
+            <a href="javascript:;" class="side-menu">
+                <div class="side-menu__icon"><i data-feather="box"></i></div>
+                <div class="side-menu__title">
+                    Category
+                    <div class="side-menu__sub-icon "><i data-feather="chevron-down"></i></div>
+                </div>
             </a>
+            <ul class="">
+                <li>
+                    <a href="{{route('testimonials.create')}}" class="side-menu">
+                        <div class="side-menu__icon"><i data-feather="activity"></i></div>
+                        <div class="side-menu__title"> testimonials </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('testimonials.index')}}" class="side-menu">
+                        <div class="side-menu__icon"><i data-feather="activity"></i></div>
+                        <div class="side-menu__title"> testimonials</div>
+                    </a>
+                </li>
+
+            </ul>
+
+        <li>
+            <a href="javascript:;" class="side-menu">
+                <div class="side-menu__icon"><i data-feather="box"></i></div>
+                <div class="side-menu__title">
+                    Skill
+                    <div class="side-menu__sub-icon "><i data-feather="chevron-down"></i></div>
+                </div>
+            </a>
+            <ul class="">
+                <li>
+                    <a href="{{route('skill.create')}}" class="side-menu">
+                        <div class="side-menu__icon"><i data-feather="activity"></i></div>
+                        <div class="side-menu__title"> Soft skill</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('skill.index')}}" class="side-menu">
+                        <div class="side-menu__icon"><i data-feather="activity"></i></div>
+                        <div class="side-menu__title"> skill</div>
+                    </a>
+                </li>
+
+            </ul>
         </li>
 
         <li>

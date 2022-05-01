@@ -14,6 +14,7 @@ class DashboardController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+//        $this->middleware('guest')->except('logout');
     }
 
     /**
@@ -25,4 +26,6 @@ class DashboardController extends Controller
     {
         return view('backend.index');
     }
+
+
 }

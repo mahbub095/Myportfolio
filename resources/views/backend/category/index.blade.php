@@ -52,85 +52,54 @@
         <!-- END: Top Bar -->
 
         <div class="grid grid-cols-12 gap-6 mt-5">
-         </div>
-            <!-- BEGIN: Data List -->
-
-            @if ($errors->any())
-<div class="alert alert-danger">
-	<ul>
-		@foreach ($errors->all() as $error)
-		<li>{{ $error }}</li>
-		@endforeach
-	</ul>
-</div>
-@endif
-            <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
-                <table class="table table-report -mt-2">
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th class="whitespace-nowrap">PRODUCT NAME</th>
-                        <th class="text-center whitespace-nowrap">ACTIONS</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($categories as $key => $category)
-                        <tr class="intro-x">
-                            <td>{{ $key+1 }}</td>
-                            <td>
-                                <a href="" class="font-medium whitespace-nowrap">{{ $category->name }}</a>
-                            </td>
-                            <td class="table-report__action w-56">
-                                <div class="flex justify-center items-center">
-                                    <a class="flex items-center mr-3" href="{{ route('category.edit',$category->id) }}"> <i
-                                            data-feather="check-square" class="w-4 h-4 mr-1"></i> Edit </a>
-                                    <a class="flex items-center text-danger" href="javascript:;" data-tw-toggle="modal"
-                                       data-tw-target="#delete-confirmation-modal"> <i data-feather="trash-2"
-                                                                                       class="w-4 h-4 mr-1"></i> Delete
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
-                    
-                    </tbody>
-                </table>
-            </div>
-            <!-- END: Data List -->
-            <!-- BEGIN: Pagination -->
-
-            <!-- END: Pagination -->
         </div>
-        <!-- BEGIN: Delete Confirmation Modal -->
-        <div id="delete-confirmation-modal" class="modal" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-body p-0">
-                        <div class="p-5 text-center">
-                            <i data-feather="x-circle" class="w-16 h-16 text-danger mx-auto mt-3"></i>
-                            <div class="text-3xl mt-5">Are you sure?</div>
-                            <div class="text-slate-500 mt-2">
-                                Do you really want to delete these records?
-                                <br>
-                                This process cannot be undone.
+        <!-- BEGIN: Data List -->
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
+            <table class="table table-report -mt-2">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th class="whitespace-nowrap">PRODUCT NAME</th>
+                    <th class="text-center whitespace-nowrap">ACTIONS</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($categories as $key => $category)
+                    <tr class="intro-x">
+                        <td>{{ $key+1 }}</td>
+                        <td>
+                            <a href="" class="font-medium whitespace-nowrap">{{ $category->name }}</a>
+                        </td>
+                        <td class="table-report__action w-56">
+                            <div class="flex justify-center items-center">
+                                <a class="flex items-center mr-3" href="{{ route('category.edit',$category->id) }}"> <i
+                                        data-feather="check-square" class="w-4 h-4 mr-1"></i> Edit </a>
+                                <a class="flex items-center text-danger"
+                                   href="{{ route('categorys.delete',$category->id) }}" data-tw-toggle="modal"
+                                   data-tw-target="#delete-confirmation-modal"> <i data-feather="trash-2"
+                                                                                   class="w-4 h-4 mr-1"></i> Delete
+                                </a>
                             </div>
-                        </div>
-                        <div class="px-5 pb-8 text-center">
-                            <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-24 mr-1">
-                                Cancel
-                            </button>
-                           
-                            <td>
-                            <a href="{{ route('categorys.delete',$category->id) }}"
-                               class="btn btn-danger w-24" id="delete">Delete</a>
-                            </td>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-            </div>
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
         </div>
-        <!-- END: Delete Confirmation Modal -->
+        <!-- END: Data List -->
+        <!-- BEGIN: Pagination -->
+
+        <!-- END: Pagination -->
     </div>
 
-    <!-- END: Content -->
 @endsection
