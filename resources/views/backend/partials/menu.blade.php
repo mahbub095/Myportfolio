@@ -8,7 +8,6 @@
                     <div class="side-menu__sub-icon transform rotate-180"></div>
                 </div>
             </a>
-
         </li>
         <li>
             <a href="javascript:;" class="side-menu">
@@ -25,7 +24,6 @@
                         <div class="side-menu__title"> Taglines</div>
                     </a>
                 </li>
-
             </ul>
         </li>
         <li>
@@ -34,7 +32,6 @@
                 <div class="side-menu__title"> About</div>
             </a>
         </li>
-
         <li>
             <a href="javascript:;" class="side-menu">
                 <div class="side-menu__icon"><i data-feather="box"></i></div>
@@ -53,7 +50,7 @@
                 <li>
                     <a href="{{route('service.index')}}" class="side-menu">
                         <div class="side-menu__icon"><i data-feather="activity"></i></div>
-                        <div class="side-menu__title"> Service</div>
+                        <div class="side-menu__title"> Service List</div>
                     </a>
                 </li>
 
@@ -63,7 +60,7 @@
             <a href="javascript:;" class="side-menu">
                 <div class="side-menu__icon"><i data-feather="box"></i></div>
                 <div class="side-menu__title">
-                    Category
+                    Testimonials
                     <div class="side-menu__sub-icon "><i data-feather="chevron-down"></i></div>
                 </div>
             </a>
@@ -71,18 +68,16 @@
                 <li>
                     <a href="{{route('testimonials.create')}}" class="side-menu">
                         <div class="side-menu__icon"><i data-feather="activity"></i></div>
-                        <div class="side-menu__title"> testimonials </div>
+                        <div class="side-menu__title">Add testimonials</div>
                     </a>
                 </li>
                 <li>
                     <a href="{{route('testimonials.index')}}" class="side-menu">
                         <div class="side-menu__icon"><i data-feather="activity"></i></div>
-                        <div class="side-menu__title"> testimonials</div>
+                        <div class="side-menu__title"> Testimonials List</div>
                     </a>
                 </li>
-
             </ul>
-
         <li>
             <a href="javascript:;" class="side-menu">
                 <div class="side-menu__icon"><i data-feather="box"></i></div>
@@ -95,16 +90,15 @@
                 <li>
                     <a href="{{route('skill.create')}}" class="side-menu">
                         <div class="side-menu__icon"><i data-feather="activity"></i></div>
-                        <div class="side-menu__title"> Soft skill</div>
+                        <div class="side-menu__title"> Add skill</div>
                     </a>
                 </li>
                 <li>
                     <a href="{{route('skill.index')}}" class="side-menu">
                         <div class="side-menu__icon"><i data-feather="activity"></i></div>
-                        <div class="side-menu__title"> skill</div>
+                        <div class="side-menu__title"> Skill List</div>
                     </a>
                 </li>
-
             </ul>
         </li>
 
@@ -126,12 +120,10 @@
                 <li>
                     <a href="{{route('category.index')}}" class="side-menu">
                         <div class="side-menu__icon"><i data-feather="activity"></i></div>
-                        <div class="side-menu__title"> Category</div>
+                        <div class="side-menu__title"> Category List</div>
                     </a>
                 </li>
-
             </ul>
-
         <li>
             <a href="javascript:;" class="side-menu">
                 <div class="side-menu__icon"><i data-feather="box"></i></div>
@@ -150,13 +142,11 @@
                 <li>
                     <a href="{{route('skill.index')}}" class="side-menu">
                         <div class="side-menu__icon"><i data-feather="activity"></i></div>
-                        <div class="side-menu__title"> skill</div>
+                        <div class="side-menu__title"> skill List</div>
                     </a>
                 </li>
-
             </ul>
         </li>
-
         <li>
             <a href="javascript:;" class="side-menu">
                 <div class="side-menu__icon"><i data-feather="box"></i></div>
@@ -169,19 +159,17 @@
                 <li>
                     <a href="{{route('softskill.create')}}" class="side-menu">
                         <div class="side-menu__icon"><i data-feather="activity"></i></div>
-                        <div class="side-menu__title"> Add soft skill</div>
+                        <div class="side-menu__title"> Add Soft Skill</div>
                     </a>
                 </li>
                 <li>
                     <a href="{{route('softskill.index')}}" class="side-menu">
                         <div class="side-menu__icon"><i data-feather="activity"></i></div>
-                        <div class="side-menu__title">soft skill</div>
+                        <div class="side-menu__title">Soft skill List</div>
                     </a>
                 </li>
-
             </ul>
         </li>
-
         <li>
             <a href="javascript:;" class="side-menu">
                 <div class="side-menu__icon"><i data-feather="box"></i></div>
@@ -197,16 +185,14 @@
                         <div class="side-menu__title"> Add resume</div>
                     </a>
                 </li>
-
                 <li>
                     <a href="{{route('resume.index')}}" class="side-menu">
                         <div class="side-menu__icon"><i data-feather="activity"></i></div>
                         <div class="side-menu__title">Resume</div>
                     </a>
                 </li>
-
-                    </ul>
-                </li>
+            </ul>
+        </li>
         <li>
             <a href="javascript:;" class="side-menu">
                 <div class="side-menu__icon"><i data-feather="box"></i></div>
@@ -229,8 +215,7 @@
                         <div class="side-menu__title">Jobs</div>
                     </a>
                 </li>
-
-    </ul>
+            </ul>
         </li>
         <li>
             <a href="javascript:;" class="side-menu">
@@ -247,17 +232,13 @@
                         <div class="side-menu__title"> Add Jobs</div>
                     </a>
                 </li>
-
                 <li>
                     <a href="#" class="side-menu">
                         <div class="side-menu__icon"><i data-feather="activity"></i></div>
                         <div class="side-menu__title">Jobs</div>
                     </a>
                 </li>
-
-                </li>
             </ul>
-
         </li>
     </ul>
 </nav>

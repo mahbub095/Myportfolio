@@ -575,7 +575,7 @@ License: You must have a valid license purchased only from themeforest(the above
 </div>
 <!-- END: Mobile Menu -->
 <!-- BEGIN: Top Bar -->
- 
+
 <!-- END: Top Bar -->
 <div class="wrapper">
     <div class="wrapper-box">
@@ -588,7 +588,7 @@ License: You must have a valid license purchased only from themeforest(the above
     </div>
 </div>
 <!-- BEGIN: Dark Mode Switcher-->
- 
+
 <!-- END: Dark Mode Switcher-->
 
 <!-- BEGIN: JS Assets-->

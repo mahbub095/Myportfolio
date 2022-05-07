@@ -14,12 +14,14 @@ class TaglineController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function index()
     {
         $taglines = Tagline::first();
-
         return view('backend.Intro.create', compact('taglines'));
     }
 

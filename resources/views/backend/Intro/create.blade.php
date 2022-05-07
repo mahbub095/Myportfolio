@@ -12,7 +12,7 @@
                     <div class="intro-y box p-5">
                         @csrf
                         <div>
-                            <label for="tag_line" class="form-label">Degination</label>
+                            <label for="tag_line" class="form-label">Name</label>
                             <textarea class="form-control" required name="tag_line">{{ $taglines->tag_line }}</textarea>
                             <label for="description" class="form-label">Description</label>
                             <textarea class="form-control" required

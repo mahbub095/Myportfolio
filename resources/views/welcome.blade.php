@@ -116,13 +116,14 @@
                                 {{--                                    </div>--}}
                                 {{--                                </div>--}}
                         </div>
-                        @endforeach
+
                         <div class="right">
                             <div class="image">
                                 <img src="{{asset('frontend/img/thumbs/47-60.jpg')}}" alt="">
                                 <div class="main" data-img-url="{{asset( $tagline->image )}}"></div>
                             </div>
                         </div>
+                        @endforeach
                     </div>
                     <div class="main_menu">
                         <ul>
@@ -277,38 +278,38 @@
                                     <h3>Education</h3>
                                     <span class="shape"></span>
                                 </div>
-                                <ul>
-                                    <li>
-                                        @foreach(App\Models\Resume::latest()->get() as $key =>  $resume)
-
+                                @foreach(App\Models\Resume::latest()->get() as $key =>  $resume)
+                                    <ul>
+                                        <li>
                                             <div class="list_inner">
                                                 <div class="short">
                                                     <div class="job">
                                                         <h3>{{ $resume->edutitle }}</h3>
-                                                        <span>{{ $resume->university}}</span>
+                                                        <span>{{ $resume->univerisity }}</span>
                                                     </div>
                                                     <div class="year">
-                                                        <span>{{ $resume->sessions}} </span>
+                                                        <span>{{ $resume->sessions }} </span>
                                                     </div>
                                                 </div>
                                                 <div class="text">
-                                                    <p>{{ $resume->description}} </p>
+                                                    <p>{{ $resume->description }} </p>
                                                 </div>
                                             </div>
-                                    </li>
-                                    @endforeach
 
-                                </ul>
+                                        </li>
+
+
+                                    </ul>
+                                @endforeach
                             </div>
                             <div class="info_list">
                                 <div class="know_tm_resume_title">
                                     <h3>Experience</h3>
                                     <span class="shape"></span>
                                 </div>
-                                <ul>
-                                    <li>
-                                        @foreach(App\Models\Job::latest()->get() as $key =>  $jobs)
-
+                                @foreach(App\Models\Job::latest()->get() as $key =>  $jobs)
+                                    <ul>
+                                        <li>
                                             <div class="list_inner">
                                                 <div class="short">
                                                     <div class="job">
@@ -323,9 +324,9 @@
                                                     <p>{{ $jobs->expdescription}} </p>
                                                 </div>
                                             </div>
-                                    </li>
-                                    @endforeach
-                                </ul>
+                                        </li>
+                                    </ul>
+                                @endforeach
                             </div>
                         </div>
                         <div class="right">
@@ -335,7 +336,6 @@
                                     <span class="shape"></span>
                                 </div>
                                 @foreach(App\Skill::latest()->get() as $key =>  $skill)
-
                                     <div class="personal">
                                         <div class="dodo_progress">
                                             <div class="progress_inner" data-value="80">
@@ -348,8 +348,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
-
                                     </div>
                                 @endforeach
                             </div>
@@ -402,7 +400,7 @@
                                 <li class="col-lg-4 grid-item cat{{ $portfolio->cat_id }} mb-30">
                                     <div class="list_inner">
                                         <div class="image">
-                                            <img src="{{asset('frontend/img/thumbs/1-1.jpg')}}" alt="">
+                                            <img src="{{asset($portfolio->image )}}" alt="">
                                             <div class="main"
                                                  data-img-url="{{ $portfolio->image }}"></div>
                                         </div>
@@ -412,7 +410,7 @@
                                             {{-- <span>Vimeo</span> --}}
                                             <h3>{!! $portfolio->title !!}</h3>
                                         </div>
-                                        <a class="know_tm_full_link popup-vimeo" href="../../337293658-1.html"></a>
+                                        {{--                                        <a class="know_tm_full_link popup-vimeo" href="../../337293658-1.html"></a>--}}
                                     </div>
                                 </li>
                             @endforeach
@@ -501,7 +499,6 @@
                                             <div class="avatar">
                                                 <div class="main"
                                                      data-img-url="{{asset($Service->image)}}"></div>
-
                                             </div>
                                         </div>
                                         <div class="info">
@@ -512,79 +509,98 @@
 
                                 </div>
                             </div>
+                        @endforeach
                     </div>
-                    @endforeach
+
                 </div>
 
             </div>
-        	<!-- CONTACT -->
-			<div id="contact" class="know_tm_main_section">
-				<div class="know_tm_contact">
-					<div class="know_tm_main_title">
-						<span>Contact Me</span>
-						<h3>Contact me to get your work done</h3>
-					</div>
-					<div class="wrapper">
-						<div class="left">
-							<ul>
-								<li>
-									<div class="list_inner">
-										<span class="icon"><img class="svg" src="img/svg/smartphone.svg" alt=""></span>
-										<div class="short">
-											<h3>Call Me</h3>
-											<span>+123 456 7890</span>
-										</div>
-									</div>
-								</li>
-								<li>
-									<div class="list_inner">
-										<span class="icon"><img class="svg" src="img/svg/letter.svg" alt=""></span>
-										<div class="short">
-											<h3>Email Us</h3>
-											<span><a href="#"><span class="__cf_email__" data-cfemail="88e0ede4e4e7c8e1e3e6e7ffa6ebe7e5">[email&#160;protected]</span></a></span>
-										</div>
-									</div>
-								</li>
-								<li>
-									<div class="list_inner">
-										<span class="icon"><img class="svg" src="img/svg/placeholder.svg" alt=""></span>
-										<div class="short">
-											<h3>Address</h3>
-											<span>20, Bardeshi, Amin Bazar</span>
-										</div>
-									</div>
-								</li>
-							</ul>
-						</div>
-						<div class="right">
-							<div class="fields">
-								<form action="/" method="post" class="contact_form" id="contact_form" autocomplete="off">
-									<div class="returnmessage" data-success="Your message has been received, We will contact you soon."></div>
-									<div class="empty_notice"><span>Please Fill Required Fields</span></div>
-									<div class="input_list">
-										<ul>
-											<li><input id="name" type="text" placeholder="Your Name"></li>
-											<li><input id="email" type="text" placeholder="Your Email"></li>
-											<li><input id="phone" type="number" placeholder="Your Phone"></li>
-											<li><input id="subject" type="text" placeholder="Subject"></li>
-										</ul>
-									</div>
-									<div class="message_area">
-										<textarea id="message" placeholder="Your message here"></textarea>
-									</div>
-									<div class="know_tm_button">
-										<a id="send_message" href="#">Submit Now</a>
-									</div>
+            <!-- CONTACT -->
+            <div id="contact" class="know_tm_main_section">
+                <div class="know_tm_contact">
+                    <div class="know_tm_main_title">
+                        <span>Contact Me</span>
+                        <h3>Contact me to get your work done</h3>
+                    </div>
+                    <div class="wrapper">
+                        <div class="left">
+                            <ul>
+                                <li>
+                                    <div class="list_inner">
+                                        <span class="icon"><img class="svg"
+                                                                src="{{asset('frontend/img/svg/smartphone.svg')}}"
+                                                                alt=""></span>
+                                        <div class="short">
+                                            <h3>Call Me</h3>
+                                            <span>+123 456 7890</span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="list_inner">
+                                        <span class="icon"><img class="svg"
+                                                                src="{{asset('frontend/img/svg/letter.svg')}}"
+                                                                alt=""></span>
+                                        <div class="short">
+                                            <h3>Email Us</h3>
+                                            <span><a href="#"><span class="__cf_email__"
+                                                                    data-cfemail="88e0ede4e4e7c8e1e3e6e7ffa6ebe7e5">[email&#160;protected]</span></a></span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="list_inner">
+                                        <span class="icon"><img class="svg"
+                                                                src="{{asset('frontend/img/svg/placeholder.svg')}}"
+                                                                alt=""></span>
+                                        <div class="short">
+                                            <h3>Address</h3>
+                                            <span>20, Bardeshi, Amin Bazar</span>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="right">
+                            <div class="fields">
+                                <form method="post" class="contact_form" id="contact_form" autocomplete="off"
+                                      action="{{ route('contact.store') }}" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="returnmessage"
+                                         data-success="Your message has been received, We will contact you soon."></div>
+                                    <div class="empty_notice"><span>Please Fill Required Fields</span></div>
+                                    <div class="input_list">
+                                        <ul>
+                                            {{--                                            <li><input id="name" type="text" placeholder="Your Name"></li>--}}
+                                            <li><input id="email" name="email" type="text" placeholder="Your Email">
+                                            </li>
+                                            <li><input id="phone" name="phone" type="number" placeholder="Your Phone">
+                                            </li>
+                                            <li><input id="address" name="address" type="text" placeholder="Address">
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    {{--                                    <div class="message_area">--}}
+                                    {{--                                        <textarea id="message" placeholder="Your message here"></textarea>--}}
+                                    {{--                                    </div>--}}
+                                    <div class="know_tm_button">
+                                        <a id="send_message" type="submit">Submit Now</a>
 
-									<!-- If you want change mail address to yours, just open "modal" folder >> contact.php and go to line 4 and change detail to yours.  -->
+                                        {{--                                        <button type="submit" class="btn btn-primary">Save</button>--}}
 
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- /CONTACT -->
+
+                                        {{--                                        <button id="send_message" type="submit" >Save</button>--}}
+                                    </div>
+
+                                    <!-- If you want change mail address to yours, just open "modal" folder >> contact.php and go to line 4 and change detail to yours.  -->
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /CONTACT -->
 
         </div>
     </div>

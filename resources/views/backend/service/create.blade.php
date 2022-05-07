@@ -3,18 +3,18 @@
     <div class="content">
         <div class="intro-y flex items-center mt-8">
             <h2 class="text-lg font-medium mr-auto">
-                Form Layout
+                Service
             </h2>
         </div>
         @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <div class="grid grid-cols-12 gap-6 mt-5">
             <div class="intro-y col-span-12 lg:col-span-6">
                 <!-- BEGIN: Form Layout -->
@@ -28,16 +28,15 @@
                             </div>
                             <div class="form-group">
                                 <label for="description">{{ __('Desination')}}</label>
-                                <textarea  name="description" class="form-control" id="description" ></textarea>
+                                <textarea name="description" class="form-control" id="description"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="image">{{ __('Image') }}</label>
-                                <input type="file" name="file" id="icon"  class="form-control" required="">
+                                <input type="file" name="file" id="icon" class="form-control" required="">
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Save</button>
 
                     </div>

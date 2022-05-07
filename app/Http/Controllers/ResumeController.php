@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Skill;
 use Illuminate\Http\Request;
 use DB;
 use App\Models\Resume;
@@ -22,7 +23,8 @@ class ResumeController extends Controller
 
     public function index()
     {
-        $resumes = Resume::latest()->get();
+//        $resumes = Resume::latest()->get();
+        $resumes = Resume::all();
         return view('backend.resume.index', compact('resumes'));
     }
 
@@ -145,7 +147,7 @@ class ResumeController extends Controller
         }
         Resume::destroy($id);
         $notification = array(
-            'message' => 'Service Destroyed',
+            'message' => 'Resume Destroyed',
             'alert-type' => 'success'
         );
 

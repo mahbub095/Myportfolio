@@ -16,7 +16,7 @@ class CreateTaglinesTable extends Migration
         Schema::create('taglines', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('tag_line');
-            $table->string('description');
+            $table->longText('description');
             $table->string('image');
             $table->timestamps();
         });

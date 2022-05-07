@@ -17,10 +17,6 @@ class IntroController extends Controller
 
     protected $intro;
 
-    /*
-      Here you can switch repository anytime without affecting the functionality of the controller !
-      Just chnage the classname of constructor's parameter
-    */
     public function __construct(IntroRepository $intro)
     {
         $this->intro = $intro;

@@ -18,8 +18,8 @@ class ServiceController extends Controller
      */
     public function index()
     {
-          $services=Service::latest()->get();
-          return view('backend.service.index',compact('services'));
+        $services = Service::latest()->get();
+        return view('backend.service.index', compact('services'));
     }
 
     /**
@@ -35,7 +35,7 @@ class ServiceController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -57,7 +57,7 @@ class ServiceController extends Controller
         $Services = new Service();
         $Services->title = $request->title;
         $Services->description = $request->description;
-          $Services->icon = $file;
+        $Services->icon = $file;
 
 
         $Services->save();
@@ -65,19 +65,14 @@ class ServiceController extends Controller
             'message' => 'Service Created',
             'alert-type' => 'success'
         );
-        // $Services = $request->all();
-        // Service::create($Services);
-        // $notification = array(
-        //     'message' => 'Service Created',
-        //     'alert-type' => 'success'
-        // );
+
         return back()->with($notification);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -88,7 +83,7 @@ class ServiceController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -100,8 +95,8 @@ class ServiceController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -126,9 +121,6 @@ class ServiceController extends Controller
 
         $Services->title = $request->title;
         $Services->description = $request->description;
-
-
-
         $Services->save();
         $notification = array(
             'message' => 'Service Updated',
@@ -141,7 +133,7 @@ class ServiceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

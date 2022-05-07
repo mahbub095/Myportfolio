@@ -17,14 +17,17 @@ class SettingController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function index()
     {
-
         try {
             DB::connection()->getPdo();
             if (DB::connection()->getDatabaseName()) {
-//                $settings = Setting::first();
+                $settings = Setting::first();
 
                 return view('backend.settings', compact('settings'));
 
