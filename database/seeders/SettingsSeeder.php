@@ -15,11 +15,11 @@ class SettingsSeeder extends Seeder
     public function run()
     {
         Setting::create([
-            'webtitle' => 'SEO',
+            'webtitle' => 'Portfolio',
             'facebook' => 'https://www.facebook.com/mahbub.095',
-            'twitter' => 'https://www.facebook.com/mahbub.095',
-            'youtube' => 'https://www.facebook.com/mahbub.095',
-            'instagram' => 'https://www.facebook.com/mahbub.095',
+            'twitter' => '#',
+            'youtube' => '#',
+            'instagram' => '#',
             'cv' => 'frontend/img/profile/2.jpg',
           'image' => 'frontend/img/profile/2.jpg'
 

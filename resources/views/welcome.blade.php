@@ -563,13 +563,15 @@
                         </div>
                         <div class="right">
                             <div class="fields">
-                                <form method="post" class="contact_form" id="contact_form" autocomplete="off"
-                                      action="{{ route('contact.store') }}" enctype="multipart/form-data">
-                                    @csrf
+                                {{-- <form method="post" class="contact_form" id="contact_form" autocomplete="off"
+                                      action="{{ route('contact.store') }}" enctype="multipart/form-data"> --}}
+                                      <form method="POST" action="{{ route('contact.store') }}">
+                                        @csrf
                                     <div class="returnmessage"
                                          data-success="Your message has been received, We will contact you soon."></div>
                                     <div class="empty_notice"><span>Please Fill Required Fields</span></div>
                                     <div class="input_list">
+                                    
                                         <ul>
                                             {{--                                            <li><input id="name" type="text" placeholder="Your Name"></li>--}}
                                             <li><input id="email" name="email" type="text" placeholder="Your Email">
@@ -584,13 +586,11 @@
                                     {{--                                        <textarea id="message" placeholder="Your message here"></textarea>--}}
                                     {{--                                    </div>--}}
                                     <div class="know_tm_button">
-                                        <a id="send_message" type="submit">Submit Now</a>
-
-                                        {{--                                        <button type="submit" class="btn btn-primary">Save</button>--}}
-
-
-                                        {{--                                        <button id="send_message" type="submit" >Save</button>--}}
+                                        {{-- <a id="send_message" type="submit">Submit Now</a> --}}
+                     <button type="submit" id="send_message" class="btn btn-success">Save</button>
+                          
                                     </div>
+                                    
 
                                     <!-- If you want change mail address to yours, just open "modal" folder >> contact.php and go to line 4 and change detail to yours.  -->
 

@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Testimonials;
+use App\Models\Service;
 use Illuminate\Database\Seeder;
 
-class TestimonialsSeeder extends Seeder
+class ServiceSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,11 +14,13 @@ class TestimonialsSeeder extends Seeder
      */
     public function run()
     {
-        Testimonials::create([
-        	'name'=>'Mahbub',
-            'desination'=>'SQA Engineer',
+        //
+        
+        Service::create([
+        	'title'=>'Selenium',
             'description'=>'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-            'image'=>'frontend/img/profile/2.jpg'
+            'icon'=>'frontend/img/profile/2.jpg'
         ]);
+        
     }
 }
