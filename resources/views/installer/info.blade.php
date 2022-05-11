@@ -117,7 +117,7 @@
         </div>
     </section>
     <!-- requirments-section-end -->
-    <script src="{{ asset('admin/js/vendor/jquery-3.2.1.min.js') }}"></script>
-    <script src="{{ asset('admin/js/install/install.js') }}"></script>
+    <script src="{{ asset('demo/js/vendor/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ asset('demo/js/install/install.js') }}"></script>
 </body>
 </html>

@@ -25,7 +25,7 @@ class CategoryController extends Controller
     {
 
 
-        $categories = Category::latest()->get();
+        $categories = Category::paginate(1);
         return view('backend.category.index', compact('categories'));
     }
 

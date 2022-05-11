@@ -85,7 +85,7 @@ class InstallerController extends Controller
         $txt ="APP_NAME=".$APP_NAME."
 APP_ENV=local
 APP_KEY=base64:kZN2g9Tg6+mi1YNc+sSiZAO2ljlQBfLC3ByJLhLAUVc=
-APP_DEBUG=true
+APP_DEBUG=false
 APP_URL=".$request->app_url."
 LOG_CHANNEL=stack\n
 DB_CONNECTION=mysql
