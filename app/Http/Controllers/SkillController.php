@@ -22,7 +22,7 @@ class SkillController extends Controller
 
 
         // get all the sharks
-        $skills = Skill::all();
+        $skills = Skill::paginate(17);
 
         // load the view and pass the sharks
         return View('backend.skill.index', compact('skills'));

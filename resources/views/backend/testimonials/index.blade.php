@@ -120,7 +120,7 @@
             </div>
             <!-- END: Data List -->
             <!-- BEGIN: Pagination -->
-
+            {{ $testimonials->links() }}
             <!-- END: Pagination -->
         </div>
 

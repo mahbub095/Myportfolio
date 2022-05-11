@@ -16,7 +16,7 @@ class SoftskillController extends Controller
      */
     public function index()
     {
-        $softskills = Softskill::latest()->get();
+        $softskills = Softskill::paginate(15);
         return view('backend.soft.index', compact('softskills'));
     }
 

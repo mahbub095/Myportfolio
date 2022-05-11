@@ -127,7 +127,7 @@
             </div>
             <!-- END: Data List -->
             <!-- BEGIN: Pagination -->
-
+            {{ $jobs->links() }}
             <!-- END: Pagination -->
         </div>
 

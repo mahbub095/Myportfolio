@@ -120,7 +120,7 @@
             </div>
             <!-- END: Data List -->
             <!-- BEGIN: Pagination -->
-
+            {{ $skills->links() }}
             <!-- END: Pagination -->
         </div>
 

@@ -16,8 +16,8 @@ class PortfolioController extends Controller
      */
     public function index()
     {
-//        $info=Portfolio::latest()->get();
-//        return view('backend.portfoilo.index',compact('info'));
+       $portfolio=Portfolio::paginate(19);
+       return view('backend.portfoilo.index',compact('portfolio'));
     }
 
     /**

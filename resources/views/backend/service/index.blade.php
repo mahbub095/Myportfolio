@@ -46,7 +46,7 @@
         </div>
         <!-- END: Data List -->
         <!-- BEGIN: Pagination -->
-
+        {{ $services->links() }}
         <!-- END: Pagination -->
     </div>
     <!-- BEGIN: Delete Confirmation Modal -->

@@ -116,7 +116,7 @@
             </div>
             <!-- END: Data List -->
             <!-- BEGIN: Pagination -->
-
+            {{ $softskills->links() }}
             <!-- END: Pagination -->
         </div>
         <!-- BEGIN: Delete Confirmation Modal -->

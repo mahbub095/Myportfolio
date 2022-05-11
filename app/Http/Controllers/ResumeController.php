@@ -24,7 +24,7 @@ class ResumeController extends Controller
     public function index()
     {
 //        $resumes = Resume::latest()->get();
-        $resumes = Resume::all();
+        $resumes = Resume::paginate(14);
         return view('backend.resume.index', compact('resumes'));
     }
 

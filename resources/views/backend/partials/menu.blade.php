@@ -229,13 +229,13 @@
                 <li>
                     <a href="{{route('portfolio.create')}}" class="side-menu">
                         <div class="side-menu__icon"><i data-feather="activity"></i></div>
-                        <div class="side-menu__title"> Add Jobs</div>
+                        <div class="side-menu__title"> Add Portfolio</div>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="side-menu">
+                    <a href="{{route('portfolio.index')}}" class="side-menu">
                         <div class="side-menu__icon"><i data-feather="activity"></i></div>
-                        <div class="side-menu__title">Jobs</div>
+                        <div class="side-menu__title">Portfolio Lisr</div>
                     </a>
                 </li>
             </ul>

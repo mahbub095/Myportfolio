@@ -32,26 +32,18 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($resumes as $resume)
+                    @foreach($portfolio as $port)
                         <tr class="intro-x">
                             <td>
-                                <a href="" class="font-medium whitespace-nowrap">{{ $resume->edutitle }}</a>
+                                <a href="" class="font-medium whitespace-nowrap">{{ $port->title }}</a>
                             </td>
-                            <td>
-                                <a href="" class="font-medium whitespace-nowrap">{{ $resume->univerisity }}</a>
-                            </td>
-                            <td>
-                                <a href="" class="font-medium whitespace-nowrap">{{ $resume->description }}</a>
-                            </td>
-                            <td>
-                                <a href="" class="font-medium whitespace-nowrap">{{ $resume->sessions }}</a>
-                            </td>
+                            
                             <td class="table-report__action w-56">
                                 <div class="flex justify-center items-center">
-                                    <a class="flex items-center mr-3" href="{{ route('resume.edit',$resume->id) }}"> <i
+                                    <a class="flex items-center mr-3" href="#"> <i
                                             data-feather="check-square" class="w-4 h-4 mr-1"></i> Edit </a>
                                     <a class="flex items-center text-danger"
-                                       href="{{ route('resume.delete',$resume->id) }}" data-tw-toggle="modal"
+                                       href="#" data-tw-toggle="modal"
                                        data-tw-target="#delete-confirmation-modal"> <i data-feather="trash-2"
                                                                                        class="w-4 h-4 mr-1"></i> Delete
                                     </a>
@@ -64,7 +56,7 @@
             </div>
             <!-- END: Data List -->
             <!-- BEGIN: Pagination -->
-            {{ $resumes->links() }}
+            {{ $portfolio->links() }}
             <!-- END: Pagination -->
         </div>
 
